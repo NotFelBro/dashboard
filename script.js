@@ -13,18 +13,20 @@ const elements = {
 elements.aside.forEach((aside) => {
   aside.addEventListener("click", (event) => {
     event.preventDefault();
-    console.log(event.target.id);
-    displayController(event.target.id);
+    const id = event.target.id;
+    if (id) {
+      displayController(id);
+    }
   });
 });
 
 function displayController(id) {
-  elements.section.forEach((section) => {
-    if (!section.classList.contains("hidden")) {
-      section.classList.add("hidden");
-    }
+  const targetClass = "secao-" + id;
 
-    if (section.classList.contains(id)) {
+  elements.section.forEach((section) => {
+    section.classList.add("hidden");
+
+    if (section.classList.contains(targetClass)) {
       section.classList.remove("hidden");
     }
   });
