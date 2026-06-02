@@ -116,3 +116,77 @@ footer p {
     justify-content: center;
   }
 }
+
+/* criar um card para a secção de moeda */
+
+.secao-moeda {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  height: 200px;
+  width: 300px;
+}
+
+.secao-imc {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  height: 200px;
+  width: 300px;
+}
+
+.secao-temperatura {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  height: 200px;
+  width: 300px;
+}
+
+.secao-velocidade {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  height: 200px;
+  width: 300px;
+}
+
+.secao-massa {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  height: 200px;
+  width: 300px;
+}
+
+.secao-regra3 {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  height: 200px;
+  width: 300px;
+}
