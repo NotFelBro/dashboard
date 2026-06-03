@@ -19,8 +19,8 @@ lista.addEventListener("click", (e) => {
 
 function mostrarResultado(el, html, erro = false) {
   el.innerHTML = html;
-  el.innerHTML.add("visivel");
-  el.innerHTML.toggle("erro", erro);
+  el.classList.add("visivel");
+  el.classList.toggle("erro", erro);
 }
 
 document.getElementById("btn-moeda").addEventListener("click", () => {
@@ -35,20 +35,26 @@ document.getElementById("btn-moeda").addEventListener("click", () => {
   resultado.innerHTML = "Buscando cotação...";
   resultado.classList.add("visivel");
   resultado.remove("erro");
+
+  fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL")
+    .then((response) => response.json())
+    .then((data) => {
+      const cotacao = parseFloat(data["USDBRL"].bid);
+      const emDolar = valor / cotacao;
+
+      mostrarResultado(
+        resultado,
+        `R$ ${valor.toFixed(2)} = <strong>$ ${emDolar.toFixed(2)} USD</strong><br><small>Cotação: 1 USD = R$ ${cotacao.toFixed(4)}</small>`,
+      );
+    })
+    .catch(() => {
+      mostrarResultado(
+        resultado,
+        "Erro ao buscar cotação, Tente novamente.",
+        true,
+      );
+    });
 });
-
-const url = fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL")
-  .then((response) => response.json())
-  .then((data) => {
-    const cotacao = parseFloat(data["USDBRL"].bid);
-    const emDolar = valor / cotacao;
-
-    mostrarResultado(
-      resultado,
-      `R$ ${valor.toFixed(2)} = <strong>$ ${emDolar.toFixed(2)} USD</strong><br><small>Cotação: 1 USD = R$ ${cotacao.toFixed(4)}</small>`,
-    );
-  });
-
 // reservado para criar o tema escuro/claro
 const btnDark = document.querySelector("#toggle-theme-dark");
 const btnLight = document.querySelector("#toggle-theme-light");
