@@ -60,8 +60,27 @@
       </section>
 
       <section class="secao-temperatura">
-        <h2>COnversor de temperatura</h2>
-        <p>Conteúdo para o conversor de temperatura</p>
+        <div class="card">
+          <h2>Conversor de Temperatura</h2>
+          <div class="grupo">
+            <label for="de-tempo">De</label>
+            <select id="de-tempo">
+              <option value="celsius">Celcius (°C)</option>
+              <option value="fahrenheit">fahrenheit (°F)</option>
+              <option value="kelvin">kelvin (K)</option>
+            </select>
+          </div>
+          <div class="grupo">
+            <label for="para-tempo">Para</label>
+            <select id="para-tempo">
+              <option value="celsius">Celcius (°C)</option>
+              <option value="fahrenheit">fahrenheit (°F)</option>
+              <option value="kelvin">kelvin (K)</option>
+            </select>
+          </div>
+          <button class="btn-calcular" id="btn-temperatura">Converter</button>
+          <div class="resultado" id="resultado-temperatura"></div>
+        </div>
       </section>
 
       <section class="secao-velocidae">
