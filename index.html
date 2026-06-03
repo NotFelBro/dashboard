@@ -146,8 +146,30 @@
       </section>
 
       <section class="secao-regra3">
-        <h2>Regra de 3</h2>
-        <p>Conteúdo para a regra de 3</p>
+        <div class="card">
+          <h2>Regra de 3</h2>
+          <p>
+            Se <strong>A</strong> está para <strong>B</strong>, então
+            <strong>C</strong> está para <strong>?</strong>
+          </p>
+          <div class="regra3-grid">
+            <div class="grupo">
+              <label for="r3-a">A</label>
+              <input type="number" id="r3-a" placeholder="Ex: 10" />
+            </div>
+            <div class="grupo">
+              <label for="re3-b">B</label>
+              <input type="number" id="re-b" placeholder="Ex: 5" />
+              <div class="grupo">
+                <label for="re3-c">C</label>
+                <input type="number" id="re3-c" placeholder="Ex: 20" />
+              </div>
+              <div class="campo-resultado" id="resultado-regra3-campo">—</div>
+            </div>
+          </div>
+          <button class="btn-calcular" id="btn-regra3">Calcular</button>
+          <div class="resultado" id="resultado-regra3"></div>
+        </div>
       </section>
     </main>
 
