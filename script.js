@@ -24,35 +24,33 @@ function mostrarResultado(el, html, erro = false) {
 }
 
 document.getElementById("btn-moeda").addEventListener("click", () => {
-  const valor = parseFloat(document.getElementById("valor-moeda").value);
+  const brl = parseFloat(document.getElementById("valor-brl").value);
+  const usd = parseFloat(document.getElementById("valor-usd").value);
   const resultado = document.getElementById("resultado-moeda");
 
-  if (!valor || valor <= 0) {
-    mostrarResultado(resultado, "Digite um valor válido.", true);
+  // Valida: apenas um dos campos deve estar preenchido
+  if ((!brl && !usd) || (brl && usd)) {
+    resultado.value = "Preencha apenas um dos campos.";
     return;
   }
 
-  resultado.innerHTML = "Buscando cotação...";
-  resultado.classList.add("visivel");
-  resultado.remove("erro");
+  resultado.value = "Buscando cotação...";
 
   fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL")
     .then((response) => response.json())
     .then((data) => {
       const cotacao = parseFloat(data["USDBRL"].bid);
-      const emDolar = valor / cotacao;
 
-      mostrarResultado(
-        resultado,
-        `R$ ${valor.toFixed(2)} = <strong>$ ${emDolar.toFixed(2)} USD</strong><br><small>Cotação: 1 USD = R$ ${cotacao.toFixed(4)}</small>`,
-      );
+      if (brl) {
+        const emDolar = brl / cotacao;
+        resultado.value = `$ ${emDolar.toFixed(2)} USD`;
+      } else {
+        const emReal = usd * cotacao;
+        resultado.value = `R$ ${emReal.toFixed(2)} BRL`;
+      }
     })
     .catch(() => {
-      mostrarResultado(
-        resultado,
-        "Erro ao buscar cotação, Tente novamente.",
-        true,
-      );
+      resultado.value = "Erro ao buscar cotação. Tente novamente.";
     });
 });
 // reservado para criar o tema escuro/claro
