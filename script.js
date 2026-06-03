@@ -42,6 +42,11 @@ const url = fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL")
   .then((data) => {
     const cotacao = parseFloat(data["USDBRL"].bid);
     const emDolar = valor / cotacao;
+
+    mostrarResultado(
+      resultado,
+      `R$ ${valor.toFixed(2)} = <strong>$ ${emDolar.toFixed(2)} USD</strong><br><small>Cotação: 1 USD = R$ ${cotacao.toFixed(4)}</small>`,
+    );
   });
 
 // reservado para criar o tema escuro/claro
