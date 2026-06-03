@@ -39,7 +39,10 @@ document.getElementById("btn-moeda").addEventListener("click", () => {
 
 const url = fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL")
   .then((response) => response.json())
-  .then((data) => {});
+  .then((data) => {
+    const cotacao = parseFloat(data["USDBRL"].bid);
+    const emDolar = valor / cotacao;
+  });
 
 // reservado para criar o tema escuro/claro
 const btnDark = document.querySelector("#toggle-theme-dark");
