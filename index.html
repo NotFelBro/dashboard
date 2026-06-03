@@ -89,25 +89,23 @@
 
       <section class="secao-temperatura">
         <div class="card">
-          <h2>Conversor de Temperatura</h2>
-          <div class="grupo">
-            <label for="de-tempo">De</label>
-            <select id="de-tempo">
-              <option value="celsius">Celcius (°C)</option>
-              <option value="fahrenheit">fahrenheit (°F)</option>
-              <option value="kelvin">kelvin (K)</option>
+          <div class="card-header">
+            <h2>Conversor de Temperatura</h2>
+          </div>
+          <div class="campo">
+            <label for="temp-valor">Valor</label>
+            <input type="number" id="temp-valor" placeholder="Ex: 100" />
+          </div>
+          <div class="campo">
+            <label for="temp-de">De</label>
+            <select id="temp-de">
+              <option value="C">Celsius (°C)</option>
+              <option value="F">Fahrenheit (°F)</option>
+              <option value="K">Kelvin (K)</option>
             </select>
           </div>
-          <div class="grupo">
-            <label for="para-tempo">Para</label>
-            <select id="para-tempo">
-              <option value="celsius">Celcius (°C)</option>
-              <option value="fahrenheit">fahrenheit (°F)</option>
-              <option value="kelvin">kelvin (K)</option>
-            </select>
-          </div>
-          <button class="btn-calcular" id="btn-temperatura">Converter</button>
-          <div class="resultado" id="resultado-temperatura"></div>
+          <button onclick="converterTemperatura()">Converter</button>
+          <div class="resultado" id="temp-resultado">—</div>
         </div>
       </section>
 
