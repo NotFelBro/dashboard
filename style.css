@@ -73,3 +73,105 @@ main > section {
 main > section.ativa {
   display: block;
 }
+
+.card {
+  background-color: white;
+  border: 1px solid whitesmoke;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card h2 {
+  font-size: 1rem;
+  color: black;
+}
+
+.card > p {
+  font-size: 0.9rem;
+  color: black;
+}
+
+.grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.grupo label {
+  font-size: 0.82rem;
+  color: black;
+}
+
+.grupo input,
+.grupo select {
+  padding: 8px 10px;
+  border: 1px solid whitesmoke;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.regra3-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.campo-resultado {
+  padding: 8px 10px;
+  border: 1px dashed #889;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: black;
+  background-color: rgba(255, 252, 252, 0.849);
+}
+
+.btn-calcular {
+  padding: 9px;
+  background-color: rgb(5, 138, 182);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-calcular:hover {
+  background-color: rgba(5, 138, 200);
+}
+
+.resultado {
+  font-size: 0.9rem;
+  color: black;
+  display: none;
+  padding: 10px;
+  background-color: #ddeeff;
+  border-radius: 4px;
+}
+
+.resultado.visivel {
+  display: block;
+}
+
+.resultado.erro {
+  background-color: #fff0f0;
+  color: red;
+}
+
+footer {
+  background-color: grey;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+footer p {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
