@@ -102,7 +102,7 @@ main > section.ativa {
 
 .iconizinho {
   font-size: 11px;
-  padding: 2px 6px;
+  padding: 2px 8px;
   border-radius: 99px;
   background: #e8e8e8;
   color: #1a4a8a;
@@ -170,7 +170,8 @@ main > section.ativa {
   display: flex;
   align-items: center;
 }
-.descricao-re3 {
+
+.descricao-r3 {
   font-size: 13px;
   color: black;
   margin-bottom: 0.75rem;
