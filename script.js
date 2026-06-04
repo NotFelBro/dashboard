@@ -18,9 +18,15 @@ const taxas = {};
 
 async function carregarTaxas() {
   const pares = ["USD-BRL", "EUR-BRL"];
-}
 
-fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL");
+  const res = await fetch(
+    "https://economia.awesomeapi.com.br/json/last/USD-BRL",
+  );
+  const data = await res.json();
+  Object.keys(data).forEach((k) => {
+    taxas[k] = parseFloat(data[k].bid);
+  });
+}
 
 // reservado para criar o tema escuro/claro
 const btnDark = document.querySelector("#toggle-theme-dark");
