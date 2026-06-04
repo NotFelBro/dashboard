@@ -80,90 +80,104 @@ main > section.ativa {
 .card {
   background-color: white;
   border: 1px solid whitesmoke;
-  border-radius: 8px;
-  padding: 24px;
-  max-width: 500px;
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 480px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.card h2 {
-  font-size: 1rem;
-  color: black;
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #000000;
 }
 
-.card > p {
-  font-size: 0.9rem;
+.card-header h2 {
+  font-size: 1.1rem;
   color: black;
+  font-weight: bold;
+}
+
+.iconizinho {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 99px;
+  background: #e8e8e8;
+  color: #1a4a8a;
 }
 
 .grupo {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  margin-bottom: 0.75rem;
 }
 
 .grupo label {
-  font-size: 0.82rem;
+  display: block;
+  font-size: 12px;
   color: black;
+  margin-bottom: 4px;
 }
 
 .grupo input,
 .grupo select {
+  width: 100%;
   padding: 8px 10px;
   border: 1px solid whitesmoke;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
-.regra3-grid {
+.grupo input:focus,
+.grupo select:focus {
+  border-color: #1a4a8a;
+}
+
+.linha-dupla {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
+}
+
+.card > button {
   width: 100%;
-}
-
-.campo-resultado {
-  padding: 8px 10px;
-  border: 1px dashed #889;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  color: black;
-  background-color: rgba(255, 252, 252, 0.849);
-}
-
-.btn-calcular {
-  padding: 9px;
-  background-color: rgb(5, 138, 182);
+  padding: 10px;
+  background-color: #1a4a8a;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  border-radius: 6px;
+  font-size: 14px;
   cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s;
 }
 
-.btn-calcular:hover {
-  background-color: rgba(5, 138, 200);
+.card > button:hover {
+  background-color: #163d73;
 }
 
 .resultado {
-  font-size: 0.9rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #ececec;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #163d73;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.descricao-re3 {
+  font-size: 13px;
   color: black;
-  display: none;
-  padding: 10px;
-  background-color: #ddeeff;
-  border-radius: 4px;
-}
-
-.resultado.visivel {
-  display: block;
-}
-
-.resultado.erro {
-  background-color: #fff0f0;
-  color: red;
+  margin-bottom: 0.75rem;
 }
 
 footer {
