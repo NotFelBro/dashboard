@@ -12,6 +12,14 @@ lista.addEventListener("click", (e) => {
   });
 });
 
+/* section moedas */
+
+const taxas = {};
+
+async function carregarTaxas() {
+  const pares = ["USD-BRL", "EUR-BRL"];
+}
+
 fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL");
 
 // reservado para criar o tema escuro/claro
