@@ -88,7 +88,7 @@ main > section.ativa {
 .card-header {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 12px;
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #eeecec;
