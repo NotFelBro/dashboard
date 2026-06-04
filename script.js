@@ -27,10 +27,3 @@ async function carregarTaxas() {
     taxas[k] = parseFloat(data[k].bid);
   });
 }
-
-// reservado para criar o tema escuro/claro
-const btnDark = document.querySelector("#toggle-theme-dark");
-const btnLight = document.querySelector("#toggle-theme-light");
-
-const style = document.createElement("style");
-// reservado para criar o tema escuro/claro
