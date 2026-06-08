@@ -38,3 +38,20 @@ async function carregarTaxas() {
     if (badge) badge.textContent = "Offline";
   }
 }
+
+function converteMoedas() {
+  const valor = parseFloat(document.getElementById("moeda-valor").value);
+  const de = document.getElementById("moeda-de").value;
+  const para = document.getElementById("moeda-para").value;
+  const resultado = document.getElementById("moeda-resultado");
+
+  if (isNaN(valor)) {
+    resultado.textContent = "Digite um valor válido.";
+    return;
+  }
+
+  if (de === para) {
+    resultado.textContent = valor.toFixed(2) + " " + para;
+    return;
+  }
+}
