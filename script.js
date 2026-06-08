@@ -16,6 +16,11 @@ lista.addEventListener("click", (e) => {
 
 const taxas = {};
 
+const FALLBACK = {
+  "USD-BRL": 5.75,
+  "EUR-BRL": 6.2,
+};
+
 async function carregarTaxas() {
   const pares = ["USD-BRL", "EUR-BRL"];
   try {
@@ -33,13 +38,16 @@ async function carregarTaxas() {
       badge.style.color = "green";
     }
   } catch (error) {
-    console.error("Error ao carregar taxas:", e);
+    Object.assign(taxas, FALLBACK);
     const badge = document.getElementById("taxa-badge");
-    if (badge) badge.textContent = "Offline";
+    if (badge) {
+      badge.textContent = "Taxa estimada";
+      badge.style.color = "orange";
+    }
   }
 }
 
-function converteMoedas() {
+function converterMoeda() {
   const valor = parseFloat(document.getElementById("moeda-valor").value);
   const de = document.getElementById("moeda-de").value;
   const para = document.getElementById("moeda-para").value;
@@ -76,7 +84,7 @@ function converteMoedas() {
       resultado.textContent = "Taxa não disponível para " + para;
       return;
     }
-    resultado = emBRL / taxas[key];
+    resul = emBRL / taxas[key];
   }
 
   resultado.textContent =
@@ -91,3 +99,5 @@ function converteMoedas() {
     " " +
     para;
 }
+
+carregarTaxas();
