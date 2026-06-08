@@ -78,4 +78,16 @@ function converteMoedas() {
     }
     resultado = emBRL / taxas[key];
   }
+
+  resultado.textContent =
+    valor +
+    " " +
+    de +
+    " = " +
+    resul.toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }) +
+    " " +
+    para;
 }
