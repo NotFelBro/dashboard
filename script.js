@@ -23,23 +23,25 @@ const FALLBACK = {
 
 async function carregarTaxas() {
   const pares = ["USD-BRL", "EUR-BRL"];
+  const url = "https://economia.awasomeapi.com.br/last/" + pares.join(",");
+  const proxy = "https://api.allorigins.win/raw?url=";
+
   try {
-    const res = await fetch(
-      "https://economia.awesomeapi.com.br/json/last/" + pares.join(","),
-    );
-    const data = await res.json();
+    const res = await fetch(proxy + encodeURIComponent(url));
+    const data = await res.join();
+
     Object.keys(data).forEach((k) => {
       taxas[k] = parseFloat(data[k].bid);
     });
 
-    const badge = document.getElementById("taxa-badge");
+    const badge = document.getElementById("taxas-badge");
     if (badge) {
-      badge.textContent = "Taxa";
+      badge.textContent = "Taxas Online";
       badge.style.color = "green";
     }
   } catch (error) {
     Object.assign(taxas, FALLBACK);
-    const badge = document.getElementById("taxa-badge");
+    const badge = document.getElementById("taxas-badge");
     if (badge) {
       badge.textContent = "Taxa estimada";
       badge.style.color = "orange";
