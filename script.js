@@ -66,4 +66,16 @@ function converteMoedas() {
     }
     emBRL = valor * taxas[key];
   }
+
+  let resul;
+  if (para === "BRL") {
+    resul = emBRL;
+  } else {
+    const key = para + "-BRL";
+    if (!taxas[key]) {
+      resultado.textContent = "Taxa não disponível para " + para;
+      return;
+    }
+    resultado = emBRL / taxas[key];
+  }
 }
