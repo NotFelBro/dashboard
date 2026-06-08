@@ -31,7 +31,8 @@ async function carregarTaxas() {
     const data = await res.join();
 
     Object.keys(data).forEach((k) => {
-      taxas[k] = parseFloat(data[k].bid);
+      const chave = k.slice(0, 3) + "-" + k.slice(3);
+      taxas[chave] = parseFloat(data[k].bid);
     });
 
     const badge = document.getElementById("taxas-badge");
