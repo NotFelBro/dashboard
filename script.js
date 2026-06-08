@@ -58,6 +58,10 @@ function converterMoeda() {
     return;
   }
 
+  if (valor === 0) {
+    resultado.textContent = "O valor não pode ser zero.";
+  }
+
   if (de === para) {
     resultado.textContent = valor.toFixed(2) + " " + para;
     return;
