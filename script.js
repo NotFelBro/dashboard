@@ -102,4 +102,8 @@ function converterMoeda() {
     para;
 }
 
+document.getElementById("moeda-valor").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") converterMoeda();
+});
+
 carregarTaxas();
