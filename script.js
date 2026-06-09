@@ -1,10 +1,11 @@
 const lista = document.getElementById("evento-pai");
-const elements = document.querySelectorAll("section");
+const sections = document.querySelectorAll("section");
 
 lista.addEventListener("click", (e) => {
   const id = e.target.id;
   if (!id) return;
-  elements.forEach((section) => {
+
+  sections.forEach((section) => {
     section.classList.remove("ativa");
     if (section.classList.contains("secao-" + id)) {
       section.classList.add("ativa");
@@ -12,39 +13,26 @@ lista.addEventListener("click", (e) => {
   });
 });
 
-// ferramenta um
-
-const taxas = {
-  "USD-BRL": 5.85,
-  "EUR-BRL": 6.35,
-};
+const taxas = {};
 
 async function carregarTaxas() {
-  const badge = document.getElementById("taxas-badge");
-
   try {
-    const url = "https://economia.awesomeapi.com.br/last/USD-BRL, EUR-BRL";
-    const proxy = "https:api.allorigins.win/raw?url=";
-    const res = await fetch(proxy + encodeURIComponent(url));
-
-    if (!res.ok) throw new Error("Resposta inválida");
-
-    const raw = await res.json();
-    const data =
-      typeof raw.contents === "string" ? JSON.parse(raw.contents) : raw;
-
-    taxas["USD-BRL"] = parseFloat(data["USDBRL"].bid);
-    taxas["EUR-BRL"] = parseFloat(data["EURBRL"].bid);
-
+    const res = await fetch(
+      "https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL",
+    );
+    const data = await res.json();
+    Object.keys(data).forEach((k) => {
+      taxas[k] = parseFloat(data[k].bid);
+    });
+    const badge = document.getElementById("taxas-badge");
     if (badge) {
       badge.textContent = "Online";
-      badge.style.color = "green";
+      badge.style.background = "#d4edda";
+      badge.style.color = "#155724";
     }
-  } catch (error) {
-    if (badge) {
-      badge.textContent = "Taxa estimada";
-      badge.style.color = "orange";
-    }
+  } catch (e) {
+    const badge = document.getElementById("taxas-badge");
+    if (badge) badge.textContent = "Offline";
   }
 }
 
@@ -52,49 +40,45 @@ function converterMoeda() {
   const valor = parseFloat(document.getElementById("moeda-valor").value);
   const de = document.getElementById("moeda-de").value;
   const para = document.getElementById("moeda-para").value;
-  const resultado = document.getElementById("moeda-resultado");
+  const resultadoEl = document.getElementById("moeda-resultado");
 
-  if (isNaN(valor) || valor === 0) {
-    resultado.textContent =
-      valor === 0 ? "O valor não pode ser zero." : "Digite um valor válido";
+  if (isNaN(valor)) {
+    resultadoEl.textContent = "Digite um valor válido";
     return;
   }
-
   if (de === para) {
-    resultado.textContent = valor.toFixed(2) + " " + para;
+    resultadoEl.textContent = valor.toFixed(2) + " " + para;
     return;
   }
-
   let emBRL;
   if (de === "BRL") {
     emBRL = valor;
   } else {
-    const key = de + "-BRL";
+    const key = de + "BRL";
     if (!taxas[key]) {
-      resultado.textContent = "Taxa não disponível para " + de;
+      resultadoEl.textContent = "Taxa indisponivel.";
       return;
     }
     emBRL = valor * taxas[key];
   }
 
-  let resul;
+  let resultado;
   if (para === "BRL") {
-    resul = emBRL;
+    resultado = emBRL;
   } else {
-    const key = para + "-BRL";
+    const key = para + "BRL";
     if (!taxas[key]) {
-      resultado.textContent = "Taxa não disponível para " + para;
+      resultadoEl.textContent = "Taxa indisponivel.";
       return;
     }
-    resul = emBRL / taxas[key];
+    resultado = emBRL / taxas[key];
   }
-
-  resultado.textContent =
+  resultadoEl.textContent =
     valor +
     " " +
     de +
     " = " +
-    resul.toLocaleString("pt-BR", {
+    resultado.toLocaleString("pt-BR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }) +
@@ -102,10 +86,4 @@ function converterMoeda() {
     para;
 }
 
-document.getElementById("moeda-valor").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") converterMoeda();
-});
-
 carregarTaxas();
-
-// ferramenta dois
