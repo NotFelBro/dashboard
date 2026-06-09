@@ -13,6 +13,8 @@ lista.addEventListener("click", (e) => {
   });
 });
 
+// ferramenta um
+
 const taxas = {};
 
 async function carregarTaxas() {
