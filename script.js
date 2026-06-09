@@ -96,9 +96,27 @@ function calcularIMC() {
   const peso = parseFloat(document.getElementById("imc-peso").value);
   const altura = parseFloat(document.getElementById("imc-altura").value);
   const resultadoEl = document.getElementById("imc-resultado");
+  const pesoVazio =
+    isNaN(peso) || document.getElementById("imc-peso").value === "";
+  const alturaVazia =
+    isNaN(altura) || document.getElementById("imc-altura").value === "";
 
-  if (!peso || !altura || altura <= 0) {
+  if (pesoVazio && alturaVazia) {
+    resultadoEl.textContent = "Preencha os campos.";
+    return;
+  }
+
+  if (peso <= 0 && altura <= 0) {
     resultadoEl.textContent = "Preencha peso e altura acima de zero.";
+    return;
+  }
+
+  if (peso <= 0) {
+    resultadoEl.textContent = "Preencha o peso acima de zero.";
+  }
+
+  if (altura <= 0) {
+    resultadoEl.textContent = "Preencha a altura acima de zero.";
     return;
   }
 
@@ -113,3 +131,26 @@ function calcularIMC() {
 }
 
 // ferramenta três
+
+function converterTemperatura() {
+  const valor = parseFloat(document.getElementById("temp-valor").value);
+  const de = document.getElementById("temp-de").value;
+  const resultadoEl = document.getElementById("temp-resultado");
+
+  if (isNaN(valor)) {
+    resultadoEl.textContent = "Digite um valor válido.";
+    return;
+  }
+
+  let c;
+  if (de === "C") c = ((valor - 32) * 5) / 9;
+  else c = valor - 273.15;
+
+  resultadoEl.textContent =
+    c.toFixed(2) +
+    " °C | " +
+    ((c * 9) / 5 + 32).toFixed(2) +
+    " °F | " +
+    (c + 273.15).toFixed(2) +
+    " K";
+}
