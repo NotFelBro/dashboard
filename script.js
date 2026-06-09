@@ -95,5 +95,19 @@ carregarTaxas();
 function calcularIMC() {
   const peso = parseFloat(document.getElementById("imc-peso").value);
   const altura = parseFloat(document.getElementById("imc-altura").value);
-  const resultadoEl = document.getElementById("imc-resultado").value;
+  const resultadoEl = document.getElementById("imc-resultado");
+
+  if (!peso || !altura || altura <= 0) {
+    resultadoEl.textContent = "Preencha peso e altura acima de zero.";
+    return;
+  }
+
+  const imc = peso / (altura * altura);
+  let classificacao;
+  if (imc < 18.5) classificacao = "Abaixo do peso";
+  else if (imc < 25) classificacao = "Peso normal";
+  else if (imc < 30) classificacao = "Sobrepeso";
+  else "Obesidade";
+
+  resultadoEl.textContent = "IMC: " + imc.toFixed(1) + " — " + classificacao;
 }
