@@ -14,34 +14,33 @@ lista.addEventListener("click", (e) => {
 
 /* section moedas */
 
-const taxas = {};
-
-const FALLBACK = {
-  "USD-BRL": 5.75,
-  "EUR-BRL": 6.2,
+const taxas = {
+  "USD-BRL": 5.85,
+  "EUR-BRL": 6.35,
 };
 
 async function carregarTaxas() {
-  const pares = ["USD-BRL", "EUR-BRL"];
-  const url = "https://economia.awasomeapi.com.br/last/" + pares.join(",");
-  const proxy = "https://api.allorigins.win/raw?url=";
+  const badge = document.getElementById("taxas-badge");
 
   try {
+    const url = "https://economia.awesomeapi.com.br/last/USD-BRL, EUR-BRL";
+    const proxy = "https:api.allorigins.win/raw?url=";
     const res = await fetch(proxy + encodeURIComponent(url));
-    const data = await res.join();
 
-    Object.keys(data).forEach((k) => {
-      taxas[k] = parseFloat(data[k].bid);
-    });
+    if (!res.ok) throw new Error("Resposta inválida");
 
-    const badge = document.getElementById("taxas-badge");
+    const raw = await res.json();
+    const data =
+      typeof raw.contents === "string" ? JSON.parse(raw.contents) : raw;
+
+    taxas["USD-BRL"] = parseFloat(data["USDBRL"].bid);
+    taxas["EUR-BRL"] = parseFloat(data["EURBRL"].bid);
+
     if (badge) {
-      badge.textContent = "Taxas Online";
+      badge.textContent = "Online";
       badge.style.color = "green";
     }
   } catch (error) {
-    Object.assign(taxas, FALLBACK);
-    const badge = document.getElementById("taxas-badge");
     if (badge) {
       badge.textContent = "Taxa estimada";
       badge.style.color = "orange";
@@ -55,13 +54,10 @@ function converterMoeda() {
   const para = document.getElementById("moeda-para").value;
   const resultado = document.getElementById("moeda-resultado");
 
-  if (isNaN(valor)) {
-    resultado.textContent = "Digite um valor válido.";
+  if (isNaN(valor) || valor === 0) {
+    resultado.textContent =
+      valor === 0 ? "O valor não pode ser zero." : "Digite um valor válido";
     return;
-  }
-
-  if (valor === 0) {
-    resultado.textContent = "O valor não pode ser zero.";
   }
 
   if (de === para) {
