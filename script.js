@@ -89,3 +89,5 @@ function converterMoeda() {
 }
 
 carregarTaxas();
+
+// ferramenta dois
