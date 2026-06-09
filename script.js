@@ -111,3 +111,5 @@ function calcularIMC() {
 
   resultadoEl.textContent = "IMC: " + imc.toFixed(1) + " — " + classificacao;
 }
+
+// ferramenta três
