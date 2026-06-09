@@ -91,3 +91,9 @@ function converterMoeda() {
 carregarTaxas();
 
 // ferramenta dois
+
+function calcularIMC() {
+  const peso = parseFloat(document.getElementById("imc-peso").value);
+  const altura = parseFloat(document.getElementById("imc-altura").value);
+  const resultadoEl = document.getElementById("imc-resultado").value;
+}
