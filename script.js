@@ -96,6 +96,7 @@ function calcularIMC() {
   const peso = parseFloat(document.getElementById("imc-peso").value);
   const altura = parseFloat(document.getElementById("imc-altura").value);
   const resultadoEl = document.getElementById("imc-resultado");
+
   const pesoVazio =
     isNaN(peso) || document.getElementById("imc-peso").value === "";
   const alturaVazia =
@@ -113,6 +114,7 @@ function calcularIMC() {
 
   if (peso <= 0) {
     resultadoEl.textContent = "Preencha o peso acima de zero.";
+    return;
   }
 
   if (altura <= 0) {
