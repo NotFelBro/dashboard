@@ -12,7 +12,7 @@ lista.addEventListener("click", (e) => {
   });
 });
 
-/* section moedas */
+// ferramenta um
 
 const taxas = {
   "USD-BRL": 5.85,
@@ -107,3 +107,5 @@ document.getElementById("moeda-valor").addEventListener("keydown", (e) => {
 });
 
 carregarTaxas();
+
+// ferramenta dois
