@@ -159,3 +159,9 @@ function converterTemperatura() {
 }
 
 // ferramenta quatro
+
+function converterVelocidade() {
+  const valor = parseFloat(document.getElementById("vel-valor").value);
+  const de = document.getElementById("vel-de").value;
+  const resultadoEl = document.getElementById("vel-resultado");
+}
