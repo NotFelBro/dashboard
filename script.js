@@ -137,25 +137,43 @@ function calcularIMC() {
 function converterTemperatura() {
   const valor = parseFloat(document.getElementById("temp-valor").value);
   const de = document.getElementById("temp-de").value;
+  const para = document.getElementById("temp-para").value;
   const resultadoEl = document.getElementById("temp-resultado");
 
   if (isNaN(valor)) {
-    resultadoEl.textContent =
-      "Preencha o campo com um valor exemplificado acima.";
+    resultadoEl.textContent = "Digite um valor válido.";
     return;
   }
 
-  let c;
-  if (de === "C") c = ((valor - 32) * 5) / 9;
-  else c = valor - 273.15;
-
-  if (de === "C") {
-    resultadoEl.textContent = c.toFixed(2) + " °C";
-  } else if (de === "F") {
-    resultadoEl.textContent = ((c * 9) / 5 + 32).toFixed(2) + " °F";
-  } else {
-    resultadoEl.textContent = (c + 273.15).toFixed(2) + " K";
+  if (de === para) {
+    resultadoEl.textContent = valor.toFixed(2) + " " + unidadeTemp(para);
+    return;
   }
+
+  let celsius;
+  if (de === "C") celsius = valor;
+  else if (de === "F") celsius = ((valor - 32) * 5) / 9;
+  else celsius = valor - 273.15;
+
+  let resultado;
+  if (para === "C") resultado = celsius;
+  else if (para === "F") resultado = (celsius * 9) / 5 + 32;
+  else resultado = celsius + 273.15;
+
+  resultadoEl.textContent =
+    valor.toFixed(2) +
+    " " +
+    unidadeTemp(de) +
+    " = " +
+    resultado.toFixed(2) +
+    " " +
+    unidadeTemp(para);
+}
+
+function unidadeTemp(sigla) {
+  if (sigla === "C") return "°C";
+  if (sigla === "F") return "°F";
+  return "K";
 }
 
 // ferramenta quatro
