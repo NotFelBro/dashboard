@@ -92,45 +92,62 @@ carregarTaxas();
 
 // ferramenta dois
 
+const FAIXAS_IMC = {
+  H: { abaixo: 56.6, normalMax: 76.2, sobreMax: 91.5 },
+  M: { abaixo: 47.3, normalMax: 63.7, sobreMax: 76.5 },
+};
+
+function atualizarFaixas() {
+  const genero = document.getElementById("imc-genero")?.value || "H";
+  const f = FAIXAS_IMC[genero];
+
+  document.getElementById("val-abaixo").textContent = "< " + f.abaixo;
+  document.getElementById("val-normal").textContent =
+    f.abaixo + " - " + f.normalMax;
+  document.getElementById("val-sobre").textContent =
+    f.normalMax + " - " + f.sobreMax;
+  document.getElementById("val-obeso").textContent = "> " + f.sobreMax;
+}
+
 function calcularIMC() {
   const peso = parseFloat(document.getElementById("imc-peso").value);
   const altura = parseFloat(document.getElementById("imc-altura").value);
+  const genero = document.getElementById("imc-genero")?.value || "H";
   const resultadoEl = document.getElementById("imc-resultado");
 
-  const pesoVazio =
-    isNaN(peso) || document.getElementById("imc-peso").value === "";
-  const alturaVazia =
-    isNaN(altura) || document.getElementById("imc-altura").value === "";
-
-  if (pesoVazio && alturaVazia) {
-    resultadoEl.textContent = "Preencha os campos.";
-    return;
-  }
-
-  if (peso <= 0 && altura <= 0) {
-    resultadoEl.textContent = "Preencha peso e altura acima de zero.";
-    return;
-  }
-
-  if (peso <= 0) {
-    resultadoEl.textContent = "Preencha o peso acima de zero.";
-    return;
-  }
-
-  if (altura <= 0) {
-    resultadoEl.textContent = "Preencha a altura acima de zero.";
+  if (isNaN(peso) || isNaN(altura) || altura <= 0) {
+    resultadoEl.textContent = "Preencha peso e altura corretamente.";
     return;
   }
 
   const imc = peso / (altura * altura);
-  let classificacao;
-  if (imc < 18.5) classificacao = "Abaixo do peso";
-  else if (imc < 25) classificacao = "Peso normal";
-  else if (imc < 30) classificacao = "Sobrepeso";
-  else "Obesidade";
+  const f = FAIXAS_IMC(genero);
 
-  resultadoEl.textContent = "IMC: " + imc.toFixed(1) + " — " + classificacao;
+  let classificacao;
+  let faixasAtivas;
+  if (imc < f.abaixo) {
+    classificacao = "Abaixo do peso";
+    faixaAtiva = "faixa-abaixo";
+  } else if (imc < f.normalMax) {
+    classificacao = "Peso normal";
+    faixaAtiva = "faixa-normal";
+  } else if (imc < f.sobreMax) {
+    classificacao = "Sobrepeso";
+    faixaAtiva = "faixa-sobre";
+  } else {
+    classificacao = "Obesidade";
+    faixaAtiva = "faixa-obeso";
+  }
+
+  resultadoEl.textContent = imc.toFixed(2) + " — " + classificacao;
+
+  ["faixa-abaixo", "faixa-normal", "faixa-sobre", "faixa-obeso"].forEach((id) =>
+    document.getElementById(id).classList.remove("ativa"),
+  );
+  document.getElementById(faixaAtiva).classList.add("ativa");
 }
+
+document.addEventListener("DOMContentLoaded", atualizarFaixas);
 
 // ferramenta três
 
