@@ -229,7 +229,43 @@ function unidadeTemp(sigla) {
 // ferramenta quatro
 
 function converterVelocidade() {
-  const valor = parseFloat(document.getElementById("vel-valor").value);
+  const input = document.getElementById("vel-valor");
   const de = document.getElementById("vel-de").value;
+  const para = document.getElementById("vel-para").value;
   const resultadoEl = document.getElementById("vel-resultado");
+
+  if (input.value.trim() === "") {
+    resultadoEl.textContent =
+      "Preencha o valor exemplificado acima para converter.";
+    return;
+  }
+
+  const valor = parseFloat(input.value);
+
+  if (isNaN(valor) || valor < 0) {
+    resultadoEl.textContent = "Digite um valor de 0 acima.";
+    return;
+  }
+
+  if (de === para) {
+    resultadoEl.textContent = valor + " " + unidadeVel(de);
+    return;
+  }
+
+  let resultado;
+  if (de === "kmh" && para === "mph") resultado = valor * 0.621271;
+  else resultado = valor / 0.621271;
+
+  resultadoEl.textContent =
+    valor +
+    " " +
+    unidadeVel(de) +
+    " = " +
+    resultado.toFixed(2) +
+    " " +
+    unidadeVel(para);
+}
+
+function unidadeVel(sigla) {
+  return sigla === "kmh" ? "km/h" : "mhp";
 }
