@@ -178,6 +178,57 @@ main > section.ativa {
   margin-bottom: 0.75rem;
 }
 
+.imc-wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.imc-wrapper .card {
+  flex: 1;
+  min-width: 220px;
+}
+
+.card-genero {
+  max-width: 240px;
+}
+
+.imc-tabela {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.imc-faixa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  background-color: #1e3a5f;
+  color: #93c5fd;
+  transition:
+    background-color 0.2s,
+    outline 0.2s;
+}
+
+.imc-faixa.ativa {
+  outline: 2px solid #2563eb;
+  font-weight: bold;
+}
+
+.faixa-label {
+  color: #555555;
+}
+
+.faixa-valor {
+  font-weight: bold;
+  color: #93c5fd;
+}
+
 footer {
   background-color: grey;
   padding: 10px 20px;
