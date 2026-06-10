@@ -157,3 +157,5 @@ function converterTemperatura() {
     resultadoEl.textContent = (c + 273.15).toFixed(2) + " K";
   }
 }
+
+// ferramenta quatro
