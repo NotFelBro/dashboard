@@ -93,13 +93,22 @@ carregarTaxas();
 // ferramenta dois
 
 const FAIXAS_IMC = {
-  H: { abaixo: 56.6, normalMax: 76.2, sobreMax: 91.5 },
-  M: { abaixo: 47.3, normalMax: 63.7, sobreMax: 76.5 },
+  H: { abaixo: 19.5, normalMax: 25.5, sobreMax: 30.9 },
+  M: { abaixo: 20.5, normalMax: 25.5, sobreMax: 30.9 },
+};
+
+const EXEMPLOS_IMC = {
+  H: { peso: "Ex: 65", altura: "Ex: 1.70" },
+  M: { peso: "Ex: 62", altura: "Ex: 1.67" },
 };
 
 function atualizarFaixas() {
   const genero = document.getElementById("imc-genero")?.value || "H";
   const f = FAIXAS_IMC[genero];
+  const ex = EXEMPLOS_IMC[genero];
+
+  document.getElementById("imc-peso").placeholder = ex.peso;
+  document.getElementById("imc-altura").placeholder = ex.altura;
 
   document.getElementById("val-abaixo").textContent = "< " + f.abaixo;
   document.getElementById("val-normal").textContent =
@@ -110,21 +119,37 @@ function atualizarFaixas() {
 }
 
 function calcularIMC() {
-  const peso = parseFloat(document.getElementById("imc-peso").value);
-  const altura = parseFloat(document.getElementById("imc-altura").value);
+  const pesoInput = document.getElementById("imc-peso");
+  const alturaInput = document.getElementById("imc-altura");
   const genero = document.getElementById("imc-genero")?.value || "H";
   const resultadoEl = document.getElementById("imc-resultado");
 
-  if (isNaN(peso) || isNaN(altura) || altura <= 0) {
-    resultadoEl.textContent = "Preencha peso e altura corretamente.";
+  const peso = parseFloat(pesoInput.value);
+  const altura = parseFloat(alturaInput.value);
+
+  const pesoVazio = pesoInput.value.trim() === "";
+  const alturaVazia = alturaInput.value.trim() === "";
+  const pesoInvalido = !pesoVazio && (isNaN(peso) || peso <= 0);
+  const alturaInvalida = !alturaVazia && (isNaN(altura) || altura <= 0);
+
+  if ((pesoVazio || pesoInvalido) && (alturaVazia || alturaInvalida)) {
+    resultadoEl.textContent = "Preencha o peso e a altura corretamente.";
+    return;
+  }
+  if (pesoVazio || pesoInvalido) {
+    resultadoEl.textContent = "Preencha o peso corretamente.";
+    return;
+  }
+  if (alturaVazia || alturaInvalida) {
+    resultadoEl.textContent = "Preencha a altura corretamente.";
     return;
   }
 
   const imc = peso / (altura * altura);
-  const f = FAIXAS_IMC(genero);
+  const f = FAIXAS_IMC[genero];
 
   let classificacao;
-  let faixasAtivas;
+  let faixaAtiva;
   if (imc < f.abaixo) {
     classificacao = "Abaixo do peso";
     faixaAtiva = "faixa-abaixo";
