@@ -93,19 +93,27 @@ carregarTaxas();
 // ferramenta dois
 
 const FAIXAS_IMC = {
-  H: { abaixo: 19.5, normalMax: 25.5, sobreMax: 30.9 },
-  M: { abaixo: 20.5, normalMax: 25.5, sobreMax: 30.9 },
+  H: { abaixo: 18.5, normalMax: 24.9, sobreMax: 25.0 },
+  M: { abaixo: 18.5, normalMax: 23.9, sobreMax: 28.9 },
 };
 
 const EXEMPLOS_IMC = {
-  H: { peso: "Ex: 65", altura: "Ex: 1.70" },
-  M: { peso: "Ex: 62", altura: "Ex: 1.67" },
+  H: { peso: "Ex: 53", altura: "Ex: 1.70" },
+  M: { peso: "Ex: 47", altura: "Ex: 1.60" },
 };
 
 function atualizarFaixas() {
   const genero = document.getElementById("imc-genero")?.value || "H";
   const f = FAIXAS_IMC[genero];
   const ex = EXEMPLOS_IMC[genero];
+
+  document.getElementById("imc-peso").value = "";
+  document.getElementById("imc-altura").value = "";
+  document.getElementById("imc-resultado").textContent = "—";
+
+  ["faixa-abaixo", "faixa-normal", "faixa-sobre", "faixa-obeso"].forEach((id) =>
+    document.getElementById(id).classList.remove("ativa"),
+  );
 
   document.getElementById("imc-peso").placeholder = ex.peso;
   document.getElementById("imc-altura").placeholder = ex.altura;
