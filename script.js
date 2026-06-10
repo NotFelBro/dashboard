@@ -140,7 +140,8 @@ function converterTemperatura() {
   const resultadoEl = document.getElementById("temp-resultado");
 
   if (isNaN(valor)) {
-    resultadoEl.textContent = "Digite um valor válido.";
+    resultadoEl.textContent =
+      "Preencha o campo com um valor exemplificado acima.";
     return;
   }
 
@@ -148,11 +149,11 @@ function converterTemperatura() {
   if (de === "C") c = ((valor - 32) * 5) / 9;
   else c = valor - 273.15;
 
-  resultadoEl.textContent =
-    c.toFixed(2) +
-    " °C | " +
-    ((c * 9) / 5 + 32).toFixed(2) +
-    " °F | " +
-    (c + 273.15).toFixed(2) +
-    " K";
+  if (de === "C") {
+    resultadoEl.textContent = c.toFixed(2) + " °C";
+  } else if (de === "F") {
+    resultadoEl.textContent = ((c * 9) / 5 + 32).toFixed(2) + " °F";
+  } else {
+    resultadoEl.textContent = (c + 273.15).toFixed(2) + " K";
+  }
 }
