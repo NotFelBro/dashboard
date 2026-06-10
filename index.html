@@ -88,6 +88,47 @@
           <button onclick="calcularIMC()">Calcular</button>
           <div class="resultado" id="imc-resultado">—</div>
         </div>
+
+        <div class="card card-genero">
+          <div class="card-header">
+            <h2>Gênero</h2>
+            <span class="badge">faixas</span>
+          </div>
+          <p class="descricao-r3">
+            Ajusta as faixas de classificação do IMC de acordo com o gênero.
+          </p>
+          <div class="grupo">
+            <label for="imc-genero">Selecione</label>
+            <select id="imc-genero" onchange="atualizarFaixas()">
+              <option value="H">Homem</option>
+              <option value="M">Mulher</option>
+            </select>
+          </div>
+          <div class="imc-tabela">
+            <div class="imc-faixa" id="faixa-abaixo">
+              <span class="faixa-label">Abaixo do peso</span>
+              <span class="faixa-valor" id="val-abaixo">—</span>
+            </div>
+          </div>
+          <div class="imc-tabela">
+            <div class="imc-faixa" id="faixa-normal">
+              <span class="faixa-label">Normal</span>
+              <span class="faixa-valor" id="val-normal">—</span>
+            </div>
+          </div>
+          <div class="imc-tabela">
+            <div class="imc-faixa" id="faixa-sobre">
+              <span class="faixa-label">Sobrepeso</span>
+              <span class="faixa-valor" id="val-sobre">—</span>
+            </div>
+          </div>
+          <div class="imc-tabela">
+            <div class="imc-faixa" id="faixa-obeso">
+              <span class="faixa-label">Obesidade</span>
+              <span class="faixa-valor" id="val-obeso">—</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="secao-temperatura">
