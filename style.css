@@ -301,6 +301,45 @@ main > section.ativa {
   color: #93c5fd;
 }
 
+.r3-proporcao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.75rem;
+}
+
+.r3-lado {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.r3-lado .grupo {
+  margin-bottom: 0;
+}
+
+.r3-divisor {
+  height: 2px;
+  background-color: var(--card-border);
+  margin: 4px 0;
+  border-radius: 2px;
+}
+
+.r3-igual {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  padding-bottom: 4px;
+}
+
+#r3-x {
+  background-color: var(--result-bg) !important;
+  color: var(--result-color) !important;
+  font-weight: bold;
+  cursor: not-allowed;
+}
+
 footer {
   background-color: var(--footer-bg);
   padding: 10px 20px;
