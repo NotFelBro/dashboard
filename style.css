@@ -4,10 +4,15 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
-
   display: flex;
   flex-direction: column;
 }
@@ -16,25 +21,33 @@ header {
   background-color: grey;
   padding: 10px 20px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 header nav h1 {
   color: #fdfdfd;
   font-size: 1.3rem;
   font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 main {
   display: flex;
   flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 aside {
-  width: 200px;
-  min-width: 200px;
+  width: 15%;
+  min-width: 110px;
+  max-width: 200px;
   background-color: #a1a3a1;
-  padding: 70px 20px;
-  height: 100%;
+  padding: clamp(20px, 4vh, 70px) clamp(8px, 1.2vw, 20px);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
 }
 
 aside ul {
@@ -42,19 +55,22 @@ aside ul {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  flex: 1;
 }
 
 aside ul li button {
   width: 100%;
-  padding: 10px 16px;
+  padding: clamp(6px, 1vh, 10px) clamp(4px, 0.8vw, 16px);
   background-color: white;
   border: none;
   border-radius: 6px;
   color: blue;
-  font-size: 0.85rem;
+  font-size: clamp(0.65rem, 1vw, 0.85rem);
   font-weight: bold;
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 aside ul li button:hover {
@@ -63,14 +79,15 @@ aside ul li button:hover {
 
 aside ul li button.ativo {
   background-color: #ddeeff;
-  font-weight: bold;
 }
 
 main > section {
   flex: 1;
   background-color: #f5f5f5;
-  padding: 40px;
+  padding: clamp(12px, 3vw, 40px);
   display: none;
+  min-width: 0;
+  overflow: hidden;
 }
 
 main > section.ativa {
@@ -78,14 +95,16 @@ main > section.ativa {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .card {
   background-color: white;
   border: 1px solid whitesmoke;
   border-radius: 10px;
-  padding: 1.5rem;
-  width: 480px;
+  padding: clamp(0.8rem, 2vw, 1.5rem);
+  width: min(480px, 100%);
 }
 
 .card-header {
@@ -98,7 +117,7 @@ main > section.ativa {
 }
 
 .card-header h2 {
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
   color: black;
   font-weight: bold;
 }
@@ -109,6 +128,7 @@ main > section.ativa {
   border-radius: 99px;
   background: #e8e8e8;
   color: #1a4a8a;
+  white-space: nowrap;
 }
 
 .grupo {
@@ -166,12 +186,13 @@ main > section.ativa {
   padding: 0.75rem 1rem;
   background: #ececec;
   border-radius: 6px;
-  font-size: 15px;
+  font-size: clamp(12px, 1.5vw, 15px);
   font-weight: bold;
   color: #163d73;
   min-height: 44px;
   display: flex;
   align-items: center;
+  word-break: break-word;
 }
 
 .descricao-r3 {
@@ -185,11 +206,13 @@ main > section.ativa {
   gap: 20px;
   align-items: flex-start;
   flex-wrap: wrap;
+  width: min(740px, 100%);
 }
 
 .imc-wrapper .card {
   flex: 1;
   min-width: 220px;
+  width: auto;
 }
 
 .card-genero {
@@ -235,6 +258,7 @@ footer {
   background-color: grey;
   padding: 10px 20px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 footer p {
@@ -242,55 +266,6 @@ footer p {
   font-size: 0.9rem;
   font-weight: bold;
   letter-spacing: 1px;
-}
-
-/* trava a página */
-html {
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  height: 100%;
-  overflow: hidden;
-  min-height: unset;
-}
-
-main {
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-}
-
-main > section.ativa {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-@media (max-width: 1280px) {
-  .card {
-    width: 420px;
-  }
-}
-/* tablets legais / notebooks meia boca */
-@media (max-width: 1024px) {
-  aside {
-    width: 160px;
-    min-width: 160px;
-    padding: 40px 12px;
-  }
-
-  aside ul {
-    gap: 60px;
-  }
-
-  .card {
-    width: 380px;
-  }
-
-  main > section {
-    padding: 30px 20px;
-  }
 }
 
 /* tablet */
@@ -302,52 +277,46 @@ main > section.ativa {
   aside {
     width: 100%;
     min-width: unset;
-    padding: 10px 16px;
+    max-width: unset;
+    padding: 8px 12px;
     flex-direction: row;
   }
 
   aside ul {
     flex-direction: row;
     flex: unset;
-    gap: 8px;
     width: 100%;
-    justify-content: center;
+    gap: 6px;
+    justify-content: space-between;
+    align-items: center;
   }
 
   aside ul li {
     flex: 1;
-    min-width: 80px;
-    max-width: 120px;
   }
 
   aside ul li button {
-    flex: 1;
-    font-size: 0.75rem;
-    padding: 8px 6px;
+    font-size: clamp(0.6rem, 2vw, 0.75rem);
+    padding: 7px 4px;
+    text-align: center;
   }
 
   main > section {
-    padding: 20px 16px;
+    padding: 16px 12px;
   }
 
   .card {
     width: 100%;
-    max-width: 480px;
   }
 
   .imc-wrapper {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    width: 100%;
   }
 
   .card-genero {
     max-width: 100%;
-    width: 100%;
-  }
-
-  .imc-wrapper .card {
-    width: 100%;
-    max-width: 480px;
   }
 }
 
@@ -359,45 +328,19 @@ main > section.ativa {
   }
 
   aside ul li button {
-    font-size: 0.7rem;
-    padding: 6px 4px;
+    font-size: clamp(0.55rem, 2.8vw, 0.7rem);
+    padding: 6px 2px;
   }
 
   .card {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .linha-dupla {
-    grid-template-columns: 1fr 1fr;
+    padding: 0.8rem;
   }
 
   .card-header h2 {
-    font-size: 1rem;
-  }
-
-  .resultado {
-    font-size: 13px;
+    font-size: 0.95rem;
   }
 
   main > section {
-    padding: 12px 10px;
-  }
-}
-
-/* celular ruim de mais */
-
-@media (max-width: 360px) {
-  aside ul {
-    justify-content: space-between;
-  }
-
-  aside ul li {
-    min-width: 70px;
-  }
-
-  aside ul li button {
-    font-size: 0.65rem;
-    padding: 5px 2px;
+    padding: 10px 8px;
   }
 }
