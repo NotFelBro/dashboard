@@ -269,3 +269,47 @@ function converterVelocidade() {
 function unidadeVel(sigla) {
   return sigla === "kmh" ? "km/h" : "mhp";
 }
+
+// ferramenta cinco
+
+function converterMassa() {
+  const input = document.getElementById("massa-valor");
+  const de = document.getElementById("massa-de").value;
+  const para = document.getElementById("massa-para").value;
+  const resultadoEl = document.getElementById("massa-resultado");
+
+  if (input.value.trim() === "") {
+    resultadoEl.textContent =
+      "Preencha o valor exemplificado acima para converter.";
+    return;
+  }
+
+  const valor = parseFloat(input.value);
+
+  if (isNaN(valor) || valor < 0) {
+    resultadoEl.textContent = "Digite um valor acima de 0.";
+    return;
+  }
+
+  if (de === para) {
+    resultadoEl.textContent = valor + " " + unidadeMassa(de);
+    return;
+  }
+
+  let resultado;
+  if (de === "kg" && para === "lb") resultado = valor * 2.20462;
+  else resultado = valor / 2.20462;
+
+  resultadoEl.textContent =
+    valor +
+    " " +
+    unidadeMassa(de) +
+    " = " +
+    resultado.toFixed(5) +
+    " " +
+    unidadeMassa(para);
+}
+
+function unidadeMassa(sigla) {
+  return sigla === "kg" ? "kg" : "lb";
+}
