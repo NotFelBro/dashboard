@@ -305,7 +305,7 @@ function converterMassa() {
     " " +
     unidadeMassa(de) +
     " = " +
-    resultado.toFixed(5) +
+    resultado.toFixed(2) +
     " " +
     unidadeMassa(para);
 }
@@ -313,6 +313,8 @@ function converterMassa() {
 function unidadeMassa(sigla) {
   return sigla === "kg" ? "kg" : "lb";
 }
+
+// ferramenta seis
 
 // tema dark/light
 
