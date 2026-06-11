@@ -7,7 +7,7 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
-  min-height: 100vh;
+
   display: flex;
   flex-direction: column;
 }
@@ -240,4 +240,167 @@ footer p {
   font-size: 0.9rem;
   font-weight: bold;
   letter-spacing: 1px;
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  min-height: unset;
+}
+
+main {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+main > section.ativa {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (max-width: 1280) {
+  .card {
+    width: 420px;
+  }
+}
+/* tablets legais / notebooks meia boca */
+@media (max-width: 1024px) {
+  aside {
+    width: 160px;
+    min-width: 160px;
+    padding: 40px 12px;
+  }
+
+  aside ul {
+    gap: 60px;
+  }
+
+  .card {
+    width: 380px;
+  }
+
+  main > section {
+    padding: 30px 20px;
+  }
+}
+
+/* tablet */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow: hidden;
+  }
+
+  main {
+    flex-direction: column;
+    height: calc(100vh - 80px);
+  }
+
+  aside {
+    width: 100%;
+    min-width: unset;
+    padding: 10px 16px;
+  }
+
+  aside ul {
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  aside ul li {
+    flex: 1;
+    min-width: 80px;
+    max-width: 120px;
+  }
+
+  aside ul li button {
+    flex: 1;
+    font-size: 0.75rem;
+    padding: 8px 6px;
+  }
+
+  main > section {
+    flex: 1;
+    padding: 20px 16px;
+    overflow: auto;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .imc-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-genero {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .imc-wrapper .card {
+    width: 100%;
+    max-width: 480px;
+  }
+}
+
+/* celular */
+
+@media (max-width: 480px) {
+  header nav h1 {
+    font-size: 1rem;
+  }
+
+  aside ul li button {
+    font-size: 0.7rem;
+    padding: 6px 4px;
+  }
+
+  .card {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .linha-dupla {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card-header h2 {
+    font-size: 1rem;
+  }
+
+  .resultado {
+    font-size: 13px;
+  }
+
+  main > section {
+    padding: 12px 10px;
+  }
+}
+
+/* celular ruim de mais */
+
+@media (max-width: 360px) {
+  aside ul {
+    gap: 4px;
+  }
+
+  aside ul li {
+    min-width: 70px;
+  }
+
+  aside ul li button {
+    font-size: 0.65rem;
+    padding: 5px 2px;
+  }
 }

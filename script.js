@@ -313,3 +313,5 @@ function converterMassa() {
 function unidadeMassa(sigla) {
   return sigla === "kg" ? "kg" : "lb";
 }
+
+// ferramenta seis
