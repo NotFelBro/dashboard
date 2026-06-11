@@ -34,13 +34,15 @@ aside {
   min-width: 200px;
   background-color: #a1a3a1;
   padding: 70px 20px;
+  height: 100%;
 }
 
 aside ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  justify-content: space-between;
+  height: 100%;
 }
 
 aside ul li button {
@@ -242,6 +244,7 @@ footer p {
   letter-spacing: 1px;
 }
 
+/* trava a página */
 html {
   height: 100%;
   overflow: hidden;
@@ -392,7 +395,7 @@ main > section.ativa {
 
 @media (max-width: 360px) {
   aside ul {
-    gap: 4px;
+    justify-content: space-between;
   }
 
   aside ul li {
