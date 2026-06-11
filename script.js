@@ -45,7 +45,7 @@ function converterMoeda() {
   const resultadoEl = document.getElementById("moeda-resultado");
 
   if (isNaN(valor)) {
-    resultadoEl.textContent = "Digite um valor válido";
+    resultadoEl.textContent = "Digite um valor exemplificado acima.";
     return;
   }
   if (de === para) {
@@ -191,7 +191,7 @@ function converterTemperatura() {
   const resultadoEl = document.getElementById("temp-resultado");
 
   if (isNaN(valor)) {
-    resultadoEl.textContent = "Digite um valor válido.";
+    resultadoEl.textContent = "Digite um valor exemplificado acima.";
     return;
   }
 
@@ -314,4 +314,24 @@ function unidadeMassa(sigla) {
   return sigla === "kg" ? "kg" : "lb";
 }
 
-// ferramenta seis
+// tema dark/light
+
+function alternarTema() {
+  const html = document.documentElement;
+  const btn = document.getElementById("tema-btn");
+  const isDark = html.classList.toggle("dark");
+  btn.textContent = isDark ? "☀️" : "🌙";
+  localStorage.setItem("tema", isDark ? "dark" : "light");
+}
+
+(function () {
+  const salvo = localStorage.getItem("tema");
+  const prefereDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (salvo === "dark" || (!salvo && prefereDark)) {
+    document.documentElement.classList.add("dark");
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("tema-btn");
+      if (btn) btn.textContent = "☀️";
+    });
+  }
+})();

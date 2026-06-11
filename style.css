@@ -5,35 +5,36 @@
 }
 
 :root {
-  --header-cinza: #6b6b6b;
-  --aside-cinza2: #a1a3a1;
-  --page-cinza2: #f5f5f5;
-  --card-branco1: #ffffff;
-  --card-branco3: whitesmoke;
-  --result-branco4: #ececec;
-  --text1: #000000;
-  --text2: #000000;
-  --btn-branco: #ffffff;
-  --btn-azul: blue;
-  --btn-branco1: #e8e8e8;
-  --imc-faixa-roxo: #1e3a5f;
-  --footer-cinza: #6b6b6b;
+  --header-bg: #6b6b6b;
+  --aside-bg: #a1a3a1;
+  --page-bg: #f5f5f5;
+  --card-bg: #ffffff;
+  --card-border: whitesmoke;
+  --result-bg: #ececec;
+  --text: #000000;
+  --text-muted: #000000;
+  --btn-bg: #ffffff;
+  --btn-color: blue;
+  --btn-hover: #e8e8e8;
+  --imc-faixa-bg: #1e3a5f;
+  --footer-bg: #6b6b6b;
 }
 
 html.dark {
-  --header-roxo1: #1a1a2e;
-  --aside-roxo2: #16213e;
-  --page-roxo3: #0f3460;
-  --card-roxo4: #1a1a2e;
-  --card-roxo5: #2a2a4e;
-  --result-roxo6: #16213e;
-  --text3: #e0e0e0;
-  --text4: #b0b0c0;
-  --btn-roxo7: #2a2a4e;
-  --btn-azulinho: #7eb8f7;
-  --btn-roxo8: #3a3a6e;
-  --imc-faixa-roxo9: #0d2137;
-  --footer-roxo10: #1a1a2e;
+  --header-bg: #1a1a2e;
+  --aside-bg: #16213e;
+  --page-bg: #0f3460;
+  --card-bg: #1a1a2e;
+  --card-border: #2a2a4e;
+  --result-bg: #16213e;
+  --text: #e0e0e0;
+  --text-muted: #b0b0c0;
+  --btn-bg: #2a2a4e;
+  --btn-color: #7eb8f7;
+  --btn-hover: #3a3a6e;
+  --imc-faixa-bg: #0d2137;
+  --footer-bg: #1a1a2e;
+  --result-color: #ffffff;
 }
 
 html,
@@ -44,13 +45,13 @@ body {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: var(--page-cinza2);
+  background-color: var(--page-bg);
   display: flex;
   flex-direction: column;
 }
 
 header {
-  background-color: var(--header-cinza);
+  background-color: var(--header-bg);
   padding: 10px 20px;
   text-align: center;
   flex-shrink: 0;
@@ -83,7 +84,7 @@ aside {
   width: 15%;
   min-width: 110px;
   max-width: 200px;
-  background-color: var(--aside-cinza2);
+  background-color: var(--aside-bg);
   padding: clamp(20px, 4vh, 70px) clamp(8px, 1.2vw, 20px);
   display: flex;
   flex-direction: column;
@@ -101,10 +102,10 @@ aside ul {
 aside ul li button {
   width: 100%;
   padding: clamp(6px, 1vh, 10px) clamp(4px, 0.8vw, 16px);
-  background-color: var(--btn-branco);
+  background-color: var(--btn-bg);
   border: none;
   border-radius: 6px;
-  color: var(--btn-azul);
+  color: var(--btn-color);
   font-size: clamp(0.65rem, 1vw, 0.85rem);
   font-weight: bold;
   cursor: pointer;
@@ -114,7 +115,7 @@ aside ul li button {
 }
 
 aside ul li button:hover {
-  background-color: var(--btn-branco1);
+  background-color: var(--btn-hover);
 }
 
 aside ul li button.ativo {
@@ -123,7 +124,7 @@ aside ul li button.ativo {
 
 main > section {
   flex: 1;
-  background-color: var(--btn-branco);
+  background-color: var(--btn-bg);
   padding: clamp(12px, 3vw, 40px);
   display: none;
   min-width: 0;
@@ -140,8 +141,8 @@ main > section.ativa {
 }
 
 .card {
-  background-color: var(--card-branco1);
-  border: 1px solid var(--card-branco3);
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 10px;
   transition:
     background-color 0.3s,
@@ -156,12 +157,12 @@ main > section.ativa {
   gap: 12px;
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--card-branco3);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .card-header h2 {
   font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-  color: var(--text1);
+  color: var(--text);
   font-weight: bold;
 }
 
@@ -181,7 +182,7 @@ main > section.ativa {
 .grupo label {
   display: block;
   font-size: 12px;
-  color: var(--text2);
+  color: var(--text-muted);
   margin-bottom: 4px;
 }
 
@@ -189,11 +190,11 @@ main > section.ativa {
 .grupo select {
   width: 100%;
   padding: 8px 10px;
-  border: 1px solid var(--card-branco3);
+  border: 1px solid var(--card-border);
   border-radius: 6px;
   font-size: 14px;
-  color: var(--text1);
-  background-color: var(--card-branco3);
+  color: var(--text);
+  background-color: var(--card-border);
   outline: none;
   transition: border-color 0.2s;
 }
@@ -229,12 +230,13 @@ main > section.ativa {
 .resultado {
   margin-top: 1rem;
   padding: 0.75rem 1rem;
-  background: var(--result-branco4);
+  background: var(--result-bg);
   border-radius: 6px;
   font-size: clamp(12px, 1.5vw, 15px);
   font-weight: bold;
   color: #163d73;
   min-height: 44px;
+  color: var(--result-color);
   display: flex;
   align-items: center;
   word-break: break-word;
@@ -242,7 +244,7 @@ main > section.ativa {
 
 .descricao-r3 {
   font-size: 13px;
-  color: var(--text2);
+  color: var(--text);
   margin-bottom: 0.75rem;
 }
 
@@ -278,7 +280,7 @@ main > section.ativa {
   padding: 6px 10px;
   border-radius: 6px;
   font-size: 13px;
-  background-color: var(--imc-faixa-roxo);
+  background-color: var(--imc-faixa-bg);
   color: #93c5fd;
   transition:
     background-color 0.2s,
@@ -300,7 +302,7 @@ main > section.ativa {
 }
 
 footer {
-  background-color: var(--footer-cinza);
+  background-color: var(--footer-bg);
   padding: 10px 20px;
   text-align: center;
   flex-shrink: 0;
