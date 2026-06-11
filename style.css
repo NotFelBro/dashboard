@@ -267,7 +267,7 @@ main > section.ativa {
   overflow-x: hidden;
 }
 
-@media (max-width: 1280) {
+@media (max-width: 1280px) {
   .card {
     width: 420px;
   }
@@ -295,26 +295,22 @@ main > section.ativa {
 
 /* tablet */
 @media (max-width: 768px) {
-  html,
-  body {
-    overflow: hidden;
-  }
-
   main {
     flex-direction: column;
-    height: calc(100vh - 80px);
   }
 
   aside {
     width: 100%;
     min-width: unset;
     padding: 10px 16px;
+    flex-direction: row;
   }
 
   aside ul {
     flex-direction: row;
+    flex: unset;
     gap: 8px;
-    flex-wrap: wrap;
+    width: 100%;
     justify-content: center;
   }
 
@@ -331,9 +327,7 @@ main > section.ativa {
   }
 
   main > section {
-    flex: 1;
     padding: 20px 16px;
-    overflow: auto;
   }
 
   .card {
