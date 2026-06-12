@@ -149,6 +149,7 @@ main > section.ativa {
     border-color 0.3s;
   padding: clamp(0.8rem, 2vw, 1.5rem);
   width: min(480px, 100%);
+  box-shadow: 1px 1px 1px 0.1px grey;
 }
 
 .card-header {
