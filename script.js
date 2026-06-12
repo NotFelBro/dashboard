@@ -13,7 +13,7 @@ lista.addEventListener("click", (e) => {
   });
 });
 
-// ferramenta um
+// ferramenta um (conversor de moedas)
 
 const taxas = {};
 
@@ -90,7 +90,7 @@ function converterMoeda() {
 
 carregarTaxas();
 
-// ferramenta dois
+// ferramenta dois (imc)
 
 const FAIXAS_IMC = {
   H: { abaixo: 18.5, normalMax: 24.9, sobreMax: 25.0 },
@@ -182,7 +182,7 @@ function calcularIMC() {
 
 document.addEventListener("DOMContentLoaded", atualizarFaixas);
 
-// ferramenta três
+// ferramenta três (temperatura)
 
 function converterTemperatura() {
   const valor = parseFloat(document.getElementById("temp-valor").value);
@@ -226,7 +226,7 @@ function unidadeTemp(sigla) {
   return "K";
 }
 
-// ferramenta quatro
+// ferramenta quatro (velocidade)
 
 function converterVelocidade() {
   const input = document.getElementById("vel-valor");
@@ -270,7 +270,7 @@ function unidadeVel(sigla) {
   return sigla === "kmh" ? "km/h" : "mhp";
 }
 
-// ferramenta cinco
+// ferramenta cinco (massa)
 
 function converterMassa() {
   const input = document.getElementById("massa-valor");
@@ -314,7 +314,8 @@ function unidadeMassa(sigla) {
   return sigla === "kg" ? "kg" : "lb";
 }
 
-// ferramenta seis
+// ferramenta seis (regra de 3)
+
 function calcularRegra3() {
   const inputA = document.getElementById("r3-a");
   const inputB = document.getElementById("r3-b");
@@ -335,6 +336,7 @@ function calcularRegra3() {
   if (invalido(inputA) || invalido(inputB) || invalido(inputC)) {
     inputX.value = "";
     resultadoEl.textContent = "Digite valores exemplificados acima.";
+    return;
   }
 
   const a = parseFloat(inputA.value);
