@@ -2,6 +2,7 @@ const lista = document.getElementById("evento-pai");
 const sections = document.querySelectorAll("section");
 
 lista.addEventListener("click", (e) => {
+  if (e.target.tagName !== "BUTTON") return;
   const id = e.target.id;
   if (!id) return;
 
