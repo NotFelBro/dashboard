@@ -315,6 +315,42 @@ function unidadeMassa(sigla) {
 }
 
 // ferramenta seis
+function calcularRegra3() {
+  const inputA = document.getElementById("r3-a");
+  const inputB = document.getElementById("r3-b");
+  const inputC = document.getElementById("r3-c");
+  const inputX = document.getElementById("r3-x");
+  const resultadoEl = document.getElementById("r3-resultado");
+
+  const vazio = (el) => el.value.trim() === "";
+  const invalido = (el) =>
+    isNaN(parseFloat(el.value)) || parseFloat(el.value) < 0;
+
+  if (vazio(inputA) || vazio(inputB) || vazio(inputC)) {
+    inputX.value = "";
+    resultadoEl.textContent = "Preencha os campos A, B e C.";
+    return;
+  }
+
+  if (invalido(inputA) || invalido(inputB) || invalido(inputC)) {
+    inputX.value = "";
+    resultadoEl.textContent = "Digite valores exemplificados acima.";
+  }
+
+  const a = parseFloat(inputA.value);
+  const b = parseFloat(inputB.value);
+  const c = parseFloat(inputC.value);
+
+  if (a === 0) {
+    inputX.value = "";
+    resultadoEl.textContent = "A não pode ser 0, divisão por zero impossível.";
+    return;
+  }
+
+  const x = (b * c) / a;
+  inputX.value = x.toFixed(2);
+  resultadoEl.textContent = `${a} : ${b} = ${c} : ${x.toFixed(2)}`;
+}
 
 // tema dark/light
 
