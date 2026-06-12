@@ -267,7 +267,7 @@ function converterVelocidade() {
 }
 
 function unidadeVel(sigla) {
-  return sigla === "kmh" ? "km/h" : "mhp";
+  return sigla === "kmh" ? "km/h" : "mph";
 }
 
 // ferramenta cinco (massa)
