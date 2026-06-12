@@ -34,7 +34,11 @@ async function carregarTaxas() {
     }
   } catch (e) {
     const badge = document.getElementById("taxas-badge");
-    if (badge) badge.textContent = "Offline";
+    if (badge) {
+      badge.textContent = "Offline";
+      badge.style.background = "#f8d7da";
+      badge.style.color = "#721c24";
+    }
   }
 }
 
@@ -44,48 +48,53 @@ function converterMoeda() {
   const para = document.getElementById("moeda-para").value;
   const resultadoEl = document.getElementById("moeda-resultado");
 
-  if (isNaN(valor)) {
-    resultadoEl.textContent = "Digite um valor exemplificado acima.";
-    return;
-  }
-  if (de === para) {
-    resultadoEl.textContent = valor.toFixed(2) + " " + para;
-    return;
-  }
-  let emBRL;
-  if (de === "BRL") {
-    emBRL = valor;
-  } else {
-    const key = de + "BRL";
-    if (!taxas[key]) {
-      resultadoEl.textContent = "Taxa indisponivel.";
+  try {
+    if (isNaN(valor)) {
+      resultadoEl.textContent = "Digite um valor exemplificado acima.";
       return;
     }
-    emBRL = valor * taxas[key];
-  }
+    if (de === para) {
+      resultadoEl.textContent = valor.toFixed(2) + " " + para;
+      return;
+    }
+    let emBRL;
+    if (de === "BRL") {
+      emBRL = valor;
+    } else {
+      const key = de + "BRL";
+      if (!taxas[key]) {
+        resultadoEl.textContent = "Taxa indisponivel.";
+        return;
+      }
+      emBRL = valor * taxas[key];
+    }
 
-  let resultado;
-  if (para === "BRL") {
-    resultado = emBRL;
-  } else {
-    const key = para + "BRL";
-    if (!taxas[key]) {
-      resultadoEl.textContent = "Taxa indisponivel.";
-      return;
+    let resultado;
+    if (para === "BRL") {
+      resultado = emBRL;
+    } else {
+      const key = para + "BRL";
+      if (!taxas[key]) {
+        resultadoEl.textContent = "Taxa indisponivel.";
+        return;
+      }
+      resultado = emBRL / taxas[key];
     }
-    resultado = emBRL / taxas[key];
+    resultadoEl.textContent =
+      valor +
+      " " +
+      de +
+      " = " +
+      resultado.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }) +
+      " " +
+      para;
+  } catch (e) {
+    resultadoEl.textContent = "Erro ao realizar a conversão.";
+    console.error("Erro na conversão da API:", error);
   }
-  resultadoEl.textContent =
-    valor +
-    " " +
-    de +
-    " = " +
-    resultado.toLocaleString("pt-BR", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }) +
-    " " +
-    para;
 }
 
 carregarTaxas();
@@ -361,17 +370,34 @@ function alternarTema() {
   const btn = document.getElementById("tema-btn");
   const isDark = html.classList.toggle("dark");
   btn.textContent = isDark ? "☀️" : "🌙";
-  localStorage.setItem("tema", isDark ? "dark" : "light");
+
+  try {
+    localStorage.setItem("tema", isDark ? "dark" : "light");
+  } catch (e) {
+    console.warn(
+      "Não foi possível salvar a preferência de tema do localStorage:",
+      e,
+    );
+  }
 }
 
 (function () {
-  const salvo = localStorage.getItem("tema");
-  const prefereDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  if (salvo === "dark" || (!salvo && prefereDark)) {
-    document.documentElement.classList.add("dark");
-    document.addEventListener("DOMContentLoaded", () => {
-      const btn = document.getElementById("tema-btn");
-      if (btn) btn.textContent = "☀️";
-    });
+  try {
+    const salvo = localStorage.getItem("tema");
+    const prefereDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    if (salvo === "dark" || (!salvo && prefereDark)) {
+      document.documentElement.classList.add("dark");
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("tema-btn");
+        if (btn) btn.textContent = "☀️";
+      });
+    }
+  } catch (e) {
+    console.warn(
+      "Não foi possível ler a perferÇencia de tema do localStorage:",
+      e,
+    );
   }
 })();
